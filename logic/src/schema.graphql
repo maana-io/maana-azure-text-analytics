@@ -1,0 +1,39 @@
+input DocumentInput {
+  text: String
+}
+
+type Match {
+  text: String
+  offset: Int
+  length: Int
+}
+
+type Entity {
+  name: String
+  matches: [Match]
+  type: String
+  subType: String
+  wikipediaLanguage: String
+  wikipediaId: String
+  wikipediaUrl: String
+  bingId: String
+}
+
+type DocumentKeyPhrases {
+  keyPhrases: [String]
+  Id: ID
+}
+
+type DocumentEntities {
+  Id: ID
+  entities: [Entity]
+  errors: [String]
+}
+
+type Query {
+  keyPhrases(documents: [String!]!): [String!]!
+  entities(documents: [String!]!): [Entity]
+  entitiesNames(documents: [String!]!): [String!]!
+  entitiesWikipediaUrl(documents: [String!]!): [String!]!
+  entitiesType(documents: [String!]!): [String!]!
+}

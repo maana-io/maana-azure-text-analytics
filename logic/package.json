@@ -1,0 +1,43 @@
+{
+  "name": "q-svc-azure-text-analytics",
+  "scripts": {
+    "start": "node -r ./src/index.js",
+    "debug": "nodemon -e js,graphql -x node --inspect -r dotenv/config src/index.js",
+    "playground": "graphql playground",
+    "dev": "npm-run-all --parallel start playground"
+  },
+  "dependencies": {
+    "@azure/arm-batchai": "^0.1.0",
+    "@azure/arm-cosmosdb": "^0.1.0",
+    "@azure/arm-databricks": "^0.1.0",
+    "@azure/arm-eventhub": "^0.1.0",
+    "@azure/arm-features": "^0.1.0",
+    "@azure/arm-logic": "^0.1.0",
+    "@azure/arm-storage": "^0.1.1",
+    "@azure/cognitiveservices-entitysearch": "^0.1.0",
+    "@azure/cognitiveservices-face": "^0.1.0",
+    "@azure/cognitiveservices-imagesearch": "^0.1.0",
+    "@azure/cognitiveservices-luis-runtime": "^0.1.0",
+    "@azure/cognitiveservices-newssearch": "^0.1.0",
+    "@azure/cognitiveservices-visualsearch": "^0.1.0",
+    "@azure/ms-rest-js": "^1.1.1",
+    "@azure/ms-rest-nodeauth": "^0.8.2",
+    "bcryptjs": "2.4.3",
+    "compromise": "^11.12.1",
+    "graphql-yoga": "1.16.2",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "natural": "^0.6.1",
+    "node-fetch": "^2.3.0",
+    "prisma-binding": "2.1.6",
+    "sentiment": "^5.0.1",
+    "uuid4": "^1.1.4"
+  },
+  "devDependencies": {
+    "dotenv": "6.0.0",
+    "graphql-cli": "^3.0.9",
+    "nodemon": "1.18.4",
+    "npm-run-all": "4.1.5",
+    "prisma": "^1.25.7"
+  }
+}
