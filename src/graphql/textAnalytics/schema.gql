@@ -1,0 +1,82 @@
+# For batch operations, we require a document object
+input DocumentInput {
+  id: ID # used to match outputs
+  text: String! # document text
+  language: String # optional language tag (e.g., en)
+}
+
+# Entity match details
+type Match {
+  id: ID!
+  entityTypeScore: Float!
+  text: String!
+  offset: Int!
+  length: Int!
+}
+
+# Identified and possibly linked (resolved) entity
+type Entity {
+  id: ID! # bingId
+  name: String!
+  type: String!
+  matches: [Match!]!
+  wikipediaLanguage: String
+  wikipediaId: String
+  wikipediaUrl: ID
+  bingId: ID
+}
+
+type Error {
+  id: ID!
+  message: String!
+}
+
+# Single text result
+type EntitiesResult {
+  id: ID!
+  entities: [Entity!]!
+  error: String
+}
+
+# Per batch document entities
+type DocumentEntities {
+  id: ID!
+  entities: [Entity!]!
+}
+
+# Batch result
+type EntitiesBatchResult {
+  id: ID!
+  documentEntities: [DocumentEntities!]!
+  errors: [Error!]!
+}
+
+# Single text result
+type KeyPhrasesResult {
+  id: ID!
+  keyPhrases: [String!]!
+  error: String
+}
+
+# Per batch document key phrases
+type DocumentKeyPhrases {
+  id: ID!
+  keyPhrases: [String!]!
+}
+
+# Batch result
+type KeyPhrasesBatchResult {
+  id: ID!
+  documentKeyPhrases: [DocumentKeyPhrases!]!
+  errors: [Error!]!
+}
+
+type Query {
+  # Single piece of text (assumes English)
+  entities(text: String!, language: String): EntitiesResult!
+  # Multiple documents (required id and language)
+  entitiesBatch(documents: [DocumentInput!]!): EntitiesBatchResult!
+
+  keyPhrases(text: String!, language: String): KeyPhrasesResult!
+  keyPhrasesBatch(documents: [DocumentInput!]!): KeyPhrasesBatchResult!
+}
