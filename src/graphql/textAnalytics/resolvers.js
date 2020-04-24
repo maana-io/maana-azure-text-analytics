@@ -44,11 +44,12 @@ const callAzure = async (endpoint, documents) => {
 
 // The objects returned from the service don't have IDs, which
 // are (currently) retquired by Q, so patch them in
-const fixMatches = (matches) => matches.map((m) => ({ id: hash(m), ...m }));
+const fixMatches = (matches) =>
+  matches.map((m) => ({ id: `${m.text}@${m.offset}:${m.length}`, ...m }));
 const fixEntities = (entities) =>
   entities.map((e) => ({
     ...e,
-    id: hash(e),
+    id: `${e.type}:${e.name}`,
     matches: fixMatches(e.matches),
   }));
 
