@@ -2,7 +2,7 @@
   "name": "maana-ai-azure-text-analytics",
   "author": "Maana, Inc.",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Azure Cognitive Text Analytics wrapper",
   "main": "src/start.js",
   "repository": "git@github.com:maana-io/maana-ai-azure-text-analytics.git",
