@@ -8,7 +8,7 @@ input DocumentInput {
 # Entity match details
 type Match {
   id: ID!
-  entityTypeScore: Float!
+  entityTypeScore: Float
   text: String!
   offset: Int!
   length: Int!

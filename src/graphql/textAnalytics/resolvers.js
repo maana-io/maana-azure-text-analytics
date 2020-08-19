@@ -64,6 +64,7 @@ export const resolver = {
       const res = await callAzure(EndpointEnum.Entities, [
         { id: 0, text, language },
       ]);
+      console.log(res)
       const doc = res.documents[0];
       const err = res.errors[0];
       return {

@@ -1,0 +1,39 @@
+# Template for single POD deployment and associated service/load balancer
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: "maana-azure-text-analytics"
+  spec:
+    type: LoadBalancer
+    ports:
+    - name: "8050"
+      port: 8050
+      targetPort: 8050
+    selector:
+      service: "maana-azure-text-analytics"
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      service: "maana-azure-text-analytics"
+    name: "maana-azure-text-analytics"
+  spec:
+    replicas: 1
+    strategy: {}
+    template:
+      metadata:
+        labels:
+          service: "maana-azure-text-analytics"
+      spec:
+        containers:
+        - image: "services.azurecr.io/maana-azure-text-analytics:2.0.0"
+          name: "maana-azure-text-analytics"
+          ports:
+          - containerPort: 8050
+          resources: {}
+        restartPolicy: Always
+kind: List
+metadata: {}
+
